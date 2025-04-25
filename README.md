@@ -10,3 +10,5 @@ cd snake/
 make
 ```
 
+### other platforms
+idk if it will work at all, maybe android and mac are 
