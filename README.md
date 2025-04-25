@@ -1,0 +1,12 @@
+# Snake game
+snake game in c with ncurses
+
+## installation
+### Linux
+
+```sh
+git clone https://github.com/bvh2vgtp-k/snake.git
+cd snake/
+make
+```
+
