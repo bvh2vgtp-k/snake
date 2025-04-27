@@ -1,2 +1,2 @@
 snake: snake.c
-	cc snake.c -o snake -lncurses
+	cc snake.c -o snake -lncurses -Wall -Werror

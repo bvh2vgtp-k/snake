@@ -18,7 +18,7 @@ void die(){
 int main() {
   initscr();
   uint8_t maxY, maxX;
-  uint8_t winX, winY;
+//  uint8_t winX, winY;
   getmaxyx(stdscr, maxY, maxX);
   WINDOW* win = newwin(50, 110, (maxY / 3) - 15, (maxX / 3)-15);
   box(win, 0, 0);
@@ -57,14 +57,18 @@ int main() {
     if(pressed == 'q')
       break;
 
-    /* проверка выхода ща границы окна 
-     * справа и снизу ничё не работает надо будет доделать когда не западло*/
+    /* out of bounds check */
+    if(head.x == -1){
+      head.x = 110;
+    } else if(head.x == 110) {
+      head.x = -1;
+    } else if(head.y == -1) {
+      head.y = 50;
+    } else if (head.y == 50) {
+      head.y = 1;
+    }
 
-    if(head.x == -1 || head.y == -1)
-      die();
-
-
-    for(int i = score; i > 0; i--){
+    for(uint8_t i = score; i > 0; i--){
       body[i] = body[i - 1];
     }
      body[0] = head;
