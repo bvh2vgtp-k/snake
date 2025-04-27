@@ -1,10 +1,11 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdint.h>
 
 typedef struct Snake{
-  int x;
-  int y;
+  int8_t x;
+  int8_t y;
 } Snake;
 
 Snake body[255];
@@ -16,20 +17,20 @@ void die(){
 
 int main() {
   initscr();
-  int maxY, maxX;
-  int winX, winY;
+  uint8_t maxY, maxX;
+  uint8_t winX, winY;
   getmaxyx(stdscr, maxY, maxX);
   WINDOW* win = newwin(50, 110, (maxY / 3) - 15, (maxX / 3)-15);
   box(win, 0, 0);
   keypad(win, true);
   nodelay(win, true);
   curs_set(0);
-  int foodX = rand() % 50;
-  int foodY = rand() % 50;
-  int dirx = 1;
-  int diry = 0;
+  uint8_t foodX = rand() % 50;
+  uint8_t foodY = rand() % 50;
+  int8_t dirx = 1;
+  int8_t diry = 0;
   Snake head = {10 ,10};
-  int score = 1;
+  uint8_t score = 1;
 
   while(true) {
     int pressed = wgetch(win);
@@ -75,7 +76,7 @@ int main() {
     werase(win);
     box(win, 0, 0);
 
-    for(int i = 0; i < score; i++){
+    for(uint8_t i = 0; i < score; i++){
       mvwaddch(win, body[i].y, body[i].x, 'o');
       if(head.y == body[i].y && head.x == body[i].x) die();
     }
